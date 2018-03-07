@@ -12,14 +12,20 @@ RUN apk --update upgrade \
   && echo "ControlPort 9051" >> /etc/tor/torrc \
   && echo "CookieAuthentication 1" >> /etc/tor/torrc
 
+RUN mkdir -p /zeronet \
+  && adduser -D -h zeronet -u 1000 -G users zeronet \
+  && chown zeronet:users /zeronet
+
+
+
 #Add Zeronet source
-COPY . /root
-VOLUME /root/data
+COPY . /zeronet
+
 
 #Control if Tor proxy is started
 ENV ENABLE_TOR false
 
-WORKDIR /root
+WORKDIR /zeronet
 
 #Set upstart command
 CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0
