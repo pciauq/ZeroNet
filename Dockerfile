@@ -16,7 +16,8 @@ RUN mkdir -p /zeronet \
   && adduser -D -h /zeronet -u 1000 -G users zeronet \
   && chown zeronet:users /zeronet
 
-
+VOLUME /var/log/zeronet 
+RUN chown zeronet:1000 /var/log/zeronet
 
 #Add Zeronet source
 COPY . /zeronet
