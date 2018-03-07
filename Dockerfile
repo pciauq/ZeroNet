@@ -20,13 +20,13 @@ RUN mkdir -p /zeronet \
 
 #Add Zeronet source
 COPY . /zeronet
-
+VOLUME /zeronet/data
 
 #Control if Tor proxy is started
 ENV ENABLE_TOR false
 
 WORKDIR /zeronet
-
+USER zeronet
 #Set upstart command
 CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0
 
