@@ -1,7 +1,6 @@
 FROM alpine:3.6
 
 #Base settings
-ENV HOME /root
 
 #Install ZeroNet
 RUN apk --update upgrade \
@@ -17,7 +16,7 @@ RUN mkdir -p /zeronet \
   && chown zeronet:users /zeronet
 
 VOLUME /var/log/zeronet 
-RUN chown zeronet:1000 /var/log/zeronet
+RUN chown zeronet:users /var/log/zeronet
 
 #Add Zeronet source
 COPY . /zeronet
