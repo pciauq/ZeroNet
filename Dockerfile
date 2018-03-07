@@ -16,6 +16,7 @@ RUN mkdir -p /zeronet \
   && chown zeronet:users /zeronet
 
 VOLUME /var/log/zeronet 
+VOLUME /zeronet/data
 RUN chown zeronet:users /var/log/zeronet
 
 #Add Zeronet source
