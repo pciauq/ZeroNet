@@ -13,14 +13,14 @@ RUN apk --update upgrade \
   && echo "CookieAuthentication 1" >> /etc/tor/torrc
 
 RUN mkdir -p /zeronet \
-  && adduser -D -h zeronet -u 1000 -G users zeronet \
+  && adduser -D -h /zeronet -u 1000 -G users zeronet \
   && chown zeronet:users /zeronet
 
 
 
 #Add Zeronet source
 COPY . /zeronet
-VOLUME /zeronet/data
+
 
 #Control if Tor proxy is started
 ENV ENABLE_TOR false
