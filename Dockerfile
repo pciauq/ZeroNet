@@ -27,8 +27,8 @@ RUN chmod g+w  /zeronet
 ENV ENABLE_TOR false
 
 RUN mkdir -p /zeronet/log \
-    && touch /zeronet/log/error.log && touch /zeronet/log/debug.log && touch /zeronet/log/info.log && touch /zeronet/log/debug-last.log 
-    
+    && touch /zeronet/log/error.log && touch /zeronet/log/debug.log && touch /zeronet/log/info.log && touch /zeronet/log/debug-last.log \
+    && chmod -R 777 /zeronet  
 WORKDIR /zeronet
  
 USER zeronet
