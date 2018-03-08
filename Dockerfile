@@ -26,10 +26,14 @@ RUN chmod g+w  /zeronet
 #Control if Tor proxy is started
 ENV ENABLE_TOR false
 
+RUN mkdir -p /zeronet/log \
+    && touch /zeronet/log/error.log \
+
 WORKDIR /zeronet
+ 
 USER zeronet
 #Set upstart command
-CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet
+CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet/log
 
 #Expose ports
 EXPOSE 43110 15441
