@@ -27,13 +27,13 @@ RUN chmod g+w  /zeronet
 ENV ENABLE_TOR false
 
 RUN mkdir -p /zeronet/log \
-    && touch /zeronet/log/error.log 
+    && touch /zeronet/log/error.log && touch /zeronet/log/debug.log
     
 WORKDIR /zeronet
  
 USER zeronet
 #Set upstart command
-CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet/log
+CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet/log --log_level ERROR
 
 #Expose ports
 EXPOSE 43110 15441
