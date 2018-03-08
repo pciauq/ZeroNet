@@ -11,9 +11,9 @@ RUN apk --update upgrade \
   && echo "ControlPort 9051" >> /etc/tor/torrc \
   && echo "CookieAuthentication 1" >> /etc/tor/torrc
 
-RUN mkdir -p /zeronet \
+RUN mkdir -p zeronet \
   && adduser -D -h /zeronet -u 1000 -G users zeronet \
-  && chown zeronet:users /zeronet
+  && chown zeronet:users zeronet
 
 VOLUME /var/log/zeronet 
 VOLUME /zeronet/data
@@ -21,7 +21,7 @@ RUN chown zeronet:users /var/log/zeronet
 
 #Add Zeronet source
 COPY . /zeronet
-
+RUN chmod -P 777 /zeronet 
 
 #Control if Tor proxy is started
 ENV ENABLE_TOR false
