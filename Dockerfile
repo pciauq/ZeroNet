@@ -21,7 +21,7 @@ RUN chown zeronet:users /var/log/zeronet
 
 #Add Zeronet source
 COPY . /zeronet
-RUN chmod -P 777 /zeronet 
+RUN chmod g+w  /zeronet 
 
 #Control if Tor proxy is started
 ENV ENABLE_TOR false
