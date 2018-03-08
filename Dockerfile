@@ -29,7 +29,7 @@ ENV ENABLE_TOR false
 WORKDIR /zeronet
 USER zeronet
 #Set upstart command
-CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0
+CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet
 
 #Expose ports
 EXPOSE 43110 15441
