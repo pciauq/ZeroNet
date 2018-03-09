@@ -33,7 +33,7 @@ WORKDIR /zeronet
  
 USER zeronet
 #Set upstart command
-CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet/log --log_level ERROR
+CMD (! ${ENABLE_TOR} || tor&) && python zeronet.py --ui_ip 0.0.0.0  --log_dir /zeronet/log --log_level ERROR --fileserver_port 13984
 
 #Expose ports
-EXPOSE 43110 15441
+EXPOSE 43110 15441 13984
